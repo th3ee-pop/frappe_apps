@@ -29,8 +29,8 @@ app_license = "mit"
 # app_include_js = "/assets/frappe_apps/js/frappe_apps.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/frappe_apps/css/frappe_apps.css"
-# web_include_js = "/assets/frappe_apps/js/frappe_apps.js"
+web_include_css = "/assets/frappe_apps/css/chat-widget.css"
+web_include_js = "/assets/frappe_apps/js/chat-widget.js"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "frappe_apps/public/scss/website"
