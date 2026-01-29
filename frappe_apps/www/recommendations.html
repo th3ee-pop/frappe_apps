@@ -1,0 +1,77 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<div id="recommendations-app">
+    <!-- Vue app will mount here -->
+    <course-recommendations></course-recommendations>
+</div>
+
+<!-- Include Vue.js (in production, use CDN or bundle) -->
+<script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+
+<script>
+    // Initialize Vue app when page loads
+    frappe.ready(() => {
+        const { createApp } = Vue;
+
+        // Import your Vue component (simplified for demo)
+        // In production, you'd build this with Vite/Webpack
+        const CourseRecommendations = {
+            template: `
+                <div class="course-recommendations">
+                    <h2>{{ message }}</h2>
+                    <p>This is where your Vue component will render</p>
+                    <button @click="loadData">Load Recommendations</button>
+                </div>
+            `,
+            data() {
+                return {
+                    message: 'Course Recommendations'
+                }
+            },
+            methods: {
+                async loadData() {
+                    const response = await frappe.call({
+                        method: 'frappe_apps.course_api.get_course_recommendations'
+                    });
+                    console.log('Recommendations:', response.message);
+                }
+            }
+        };
+
+        // Create and mount app
+        const app = createApp({
+            components: {
+                'course-recommendations': CourseRecommendations
+            }
+        });
+
+        app.mount('#recommendations-app');
+    });
+</script>
+
+<style>
+    .course-recommendations {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+    }
+
+    .course-recommendations h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .course-recommendations button {
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
