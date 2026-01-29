@@ -54,7 +54,7 @@ jobs:
       - name: Initialize Bench
         run: |
           cd /home/runner
-          bench init frappe-bench --skip-redis-config-generation --skip-assets --python "$(which python)"
+          bench init frappe-bench --skip-redis-config-generation --skip-assets --python "$(which python)" --frappe-branch version-15
 
       - name: Get LMS App
         run: bench get-app lms --branch main --skip-assets
