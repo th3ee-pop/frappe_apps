@@ -1,6 +1,22 @@
 # Frappe Apps - Learning Tutor Bot (edubot)
 
-Custom Frappe app for LMS with AI-powered learning assistance.
+Custom Frappe app that extends [Frappe LMS](https://github.com/frappe/lms) with AI-powered learning assistance.
+
+## 🎯 What This Deploys
+
+This repository deploys a **complete LMS system** including:
+
+1. **Frappe Framework** (v15.x) - Full-stack backend framework
+2. **Frappe LMS** (v2.44.0) - Complete learning management system
+3. **frappe_apps** (v0.0.1) - Your custom extensions (this repo)
+
+All bundled into a single Docker image: `ghcr.io/th3ee-pop/frappe_apps:latest`
+
+## 📚 Quick Links
+
+- **[QUICKSTART.md](QUICKSTART.md)** ⚡ - Deploy in 5 minutes
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** 🏗️ - System architecture overview
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** 📖 - Detailed deployment guide
 
 ## Features
 
