@@ -1,0 +1,37 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="mb-0">{{ title }}</h1>
+                </div>
+                <div class="card-body text-center py-5">
+                    <h2 class="display-4 mb-4">{{ message }}</h2>
+
+                    <div class="alert alert-info">
+                        <p class="mb-2"><strong>Deployment Info:</strong></p>
+                        <p class="mb-1">Current User: <code>{{ user }}</code></p>
+                        <p class="mb-0">Server Time: <code>{{ timestamp }}</code></p>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-muted">
+                            This page confirms that your CI/CD pipeline is working correctly!
+                        </p>
+                        <p class="text-muted">
+                            frappe_apps → GitHub → Docker → CentOS Server ✓
+                        </p>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="/" class="btn btn-primary">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

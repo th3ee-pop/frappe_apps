@@ -5,3 +5,14 @@
 tags
 node_modules
 __pycache__
+
+# Environment files
+.env
+docker/.env
+
+# Docker volumes
+docker/volumes/
+
+# Logs
+*.log
+logs/
