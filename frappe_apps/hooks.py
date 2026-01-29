@@ -25,8 +25,8 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/frappe_apps/css/frappe_apps.css"
-# app_include_js = "/assets/frappe_apps/js/frappe_apps.js"
+app_include_css = "/assets/frappe_apps/css/chat-widget.css"
+app_include_js = "/assets/frappe_apps/js/chat-widget.js"
 
 # include js, css files in header of web template
 web_include_css = "/assets/frappe_apps/css/chat-widget.css"
@@ -79,11 +79,15 @@ web_include_js = "/assets/frappe_apps/js/chat-widget.js"
 # 	"filters": "frappe_apps.utils.jinja_filters"
 # }
 
+# Website Context
+# ----------------
+update_website_context = "frappe_apps.utils.update_website_context"
+
 # Installation
 # ------------
 
 # before_install = "frappe_apps.install.before_install"
-# after_install = "frappe_apps.install.after_install"
+after_install = "frappe_apps.install.after_install"
 
 # Uninstallation
 # ------------
@@ -197,7 +201,7 @@ web_include_js = "/assets/frappe_apps/js/chat-widget.js"
 # Request Events
 # ----------------
 # before_request = ["frappe_apps.utils.before_request"]
-# after_request = ["frappe_apps.utils.after_request"]
+after_request = ["frappe_apps.utils.inject_chat_widget"]
 
 # Job Events
 # ----------
