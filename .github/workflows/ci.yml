@@ -30,7 +30,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306:3306
-        options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping -h localhost -proot" --health-interval=10s --health-timeout=5s --health-retries=5
 
     steps:
       - name: Checkout Code
@@ -53,8 +53,8 @@ jobs:
 
       - name: Initialize Bench
         run: |
-          bench init ~/frappe-bench --skip-redis-config-generation --skip-assets --python "$(which python)"
-        working-directory: /home/runner
+          cd /home/runner
+          bench init frappe-bench --skip-redis-config-generation --skip-assets --python "$(which python)"
 
       - name: Get LMS App
         run: bench get-app lms --branch main --skip-assets

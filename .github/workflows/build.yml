@@ -62,6 +62,10 @@ jobs:
           EOF
           cat apps.json
 
+      - name: Encode apps.json to base64
+        run: |
+          echo "APPS_JSON_BASE64=$(base64 -w 0 apps.json)" >> $GITHUB_ENV
+
       - name: Checkout frappe_docker
         uses: actions/checkout@v4
         with:
@@ -79,7 +83,7 @@ jobs:
             ghcr.io/${{ env.REPO_LOWER }}:${{ env.IMAGE_TAG }}
           build-args: |
             FRAPPE_BRANCH=version-15
-            APPS_JSON_BASE64=${{ base64 -w 0 apps.json }}
+            APPS_JSON_BASE64=${{ env.APPS_JSON_BASE64 }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
