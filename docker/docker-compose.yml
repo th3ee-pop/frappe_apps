@@ -15,8 +15,9 @@ services:
   configurator:
     image: ghcr.io/th3ee-pop/frappe_apps:latest
     command:
+      - bash
+      - -c
       - |
-        bash -c '
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host mariadb
         bench set-config -gp db_port 3306
@@ -24,7 +25,6 @@ services:
         bench set-config -g redis_queue "redis://redis-queue:6379"
         bench set-config -g redis_socketio "redis://redis-socketio:6379"
         bench set-config -gp socketio_port 9000
-        '
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
@@ -34,8 +34,9 @@ services:
   create-site:
     image: ghcr.io/th3ee-pop/frappe_apps:latest
     command:
+      - bash
+      - -c
       - |
-        bash -c '
         wait-for-it -t 120 mariadb:3306
         wait-for-it -t 120 redis-cache:6379
         wait-for-it -t 120 redis-queue:6379
@@ -52,7 +53,6 @@ services:
           echo "Site $${SITE_NAME} already exists"
         fi
         bench --site $${SITE_NAME} migrate
-        '
     environment:
       SITE_NAME: ${SITE_NAME:-lms.localhost}
       DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-admin}
